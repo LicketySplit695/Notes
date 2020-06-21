@@ -61,6 +61,16 @@ The following are some examples of relative length units
 | lh       | Line height of the element                                   |
 | vw       | 1% of the viewport width                                     |
 
+---
+
+#### Note on viewport
+
+The viewport is the <u>user's visible area of the web-page</u>. It varies with device. 
+
+Details can be found at [W3Schools](https://www.w3schools.com/css/css_rwd_viewport.asp) and [MDN](https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag). 
+
+---
+
 
 
 ##### ems and rems

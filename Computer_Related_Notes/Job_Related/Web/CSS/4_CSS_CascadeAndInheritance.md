@@ -80,7 +80,7 @@ This is used to make a particular property and value the most specific thing, th
 
 Following is an example: 
 
-![Important Example](/home/angshuman/Dropbox/MarkDown_Notes/Computer_Related/Occupational/Web/CSS/CSS_Images/CSS_CascadeAndInheritance_ImporatantExample.png.png)
+![Important Example](CSS_Images/CSS_CascadeAndInheritance_ImporatantExample.png.png)
 
 ```css
 #winning { 
@@ -146,7 +146,7 @@ The revert CSS keyword reverts the cascaded value of the property from its curre
 The CSS shorthand property **`all`** can be used to apply one of these inheritance values to (almost) all properties at once. Its value can be any one of the inheritance values (inherit, initial, unset, or revert). 
 Ex. 
 
-![All Example](/home/angshuman/Dropbox/MarkDown_Notes/Computer_Related/Occupational/Web/CSS/CSS_Images/CSS_CascadeAndInheritance_AllExample.png)
+![All Example](CSS_Images/CSS_CascadeAndInheritance_AllExample.png)
 
 ```css
 blockquote { 
@@ -187,7 +187,7 @@ body { color: green; }
 </ul> 
 ```
 
-![Inheritance Example](/home/angshuman/Dropbox/MarkDown_Notes/Computer_Related/Occupational/Web/CSS/CSS_Images/CSS_CascadeAndInheritance_InhertanceExample.png)
+![Inheritance Example](CSS_Images/CSS_CascadeAndInheritance_InhertanceExample.png)
 
 Adding another CSS ruleset 
 
