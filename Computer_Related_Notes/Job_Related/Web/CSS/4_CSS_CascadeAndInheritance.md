@@ -1,7 +1,5 @@
 # [Cascade and Inheritance](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance)
 
-
-
 ## Cascade
 
 Stylesheets cascade. 
@@ -29,7 +27,7 @@ This is how the browser decides which rule to use in case they have **different 
 
 For ex: 
 
-![Specificity Example](CSS_Images/CSS_CascadeAndInheritance_SpecificityExample.png)
+<img src="CSS_Images/CSS_CascadeAndInheritance_SpecificityExample.png" alt="Specificity Example" style="zoom:67%;" />
 
 ```css
 h2 { 
@@ -80,7 +78,7 @@ This is used to make a particular property and value the most specific thing, th
 
 Following is an example: 
 
-![Important Example](CSS_Images/CSS_CascadeAndInheritance_ImporatantExample.png.png)
+<img src="CSS_Images/CSS_CascadeAndInheritance_ImporatantExample.png.png" alt="Important Example" style="zoom: 80%;" />
 
 ```css
 #winning { 
@@ -146,7 +144,7 @@ The revert CSS keyword reverts the cascaded value of the property from its curre
 The CSS shorthand property **`all`** can be used to apply one of these inheritance values to (almost) all properties at once. Its value can be any one of the inheritance values (inherit, initial, unset, or revert). 
 Ex. 
 
-![All Example](CSS_Images/CSS_CascadeAndInheritance_AllExample.png)
+<img src="CSS_Images/CSS_CascadeAndInheritance_AllExample.png" alt="All Example" style="zoom:75%;" />
 
 ```css
 blockquote { 
@@ -187,7 +185,7 @@ body { color: green; }
 </ul> 
 ```
 
-![Inheritance Example](CSS_Images/CSS_CascadeAndInheritance_InhertanceExample.png)
+<img src="CSS_Images/CSS_CascadeAndInheritance_InhertanceExample.png" alt="Inheritance Example" style="zoom:80%;" />
 
 Adding another CSS ruleset 
 

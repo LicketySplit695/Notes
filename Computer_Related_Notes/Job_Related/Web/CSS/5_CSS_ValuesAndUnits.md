@@ -11,8 +11,6 @@ color:  <color>
 
 - Values can also be *functions*.
 
-
-
 ## Numbers, Lengths and Percentages
 
 The following are considered numeric data types in CSS 
@@ -273,7 +271,7 @@ The `<image>` data type is used wherever an image is a valid value. This can be
 - Offset can be a `<percentage>` or an absolute `<length>` value. Negative values are offset in opposite direction. 
 - If only a single offset value is specified, it defines the x-coordinate, with the other value for the other axis is by default the center. 
 
- ![Position Diagram](CSS_Images/CSS_ValuesAndUnits_PositionExample.png)
+ <img src="CSS_Images/CSS_ValuesAndUnits_PositionExample.png" alt="Position Diagram" style="zoom: 67%;" />
 
  For ex. 
 

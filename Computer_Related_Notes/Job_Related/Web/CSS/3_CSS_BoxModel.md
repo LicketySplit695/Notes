@@ -58,7 +58,7 @@ Making up a block box in CSS we have the:
 
 - **Margin box**: The margin is the outermost layer, wrapping the content, padding and border as whitespace between this box and other elements. Its size can be controlled using [margin](https://developer.mozilla.org/en-US/docs/Web/CSS/margin) and related properties. 
 
-![Normal CSS Box Model](CSS_Images\CSS_BoxModel_NormalBox.png)
+<img src="CSS_Images\CSS_BoxModel_NormalBox.png" alt="Normal CSS Box Model" style="zoom:80%;" />
 
 ### The standard box model
 
@@ -74,7 +74,7 @@ With the standard box model (all browsers use this as default) the following CSS
 } 
 ```
 is interpreted as follows 
-![Standard Box](CSS_Images/CSS_BoxModel_StandardBox.png)
+<img src="CSS_Images/CSS_BoxModel_StandardBox.png" alt="Standard Box" style="zoom:80%;" />
 with the box size as 410px by 210px. 
 
 ---
@@ -95,7 +95,7 @@ box-sizing: border-box; /*mandatory*/
 ```
 
 And it is interpreted as follows 
-![Alternative Box Model](CSS_Images/CSS_BoxModel_AlternativeBox.png)
+<img src="CSS_Images/CSS_BoxModel_AlternativeBox.png" alt="Alternative Box Model" style="zoom:80%;" />
 
 ---
 

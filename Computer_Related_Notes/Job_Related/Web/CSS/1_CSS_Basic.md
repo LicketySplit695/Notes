@@ -18,7 +18,7 @@ The following defines a **CSS Ruleset**
 
 Even if we don’t add our own CSS, the browser adds some default CSS to the document, as shown: 
 
-![Default Browser Added CSS](CSS_Images/CSS_Basic_DefaultCSS.jpeg)
+<img src="CSS_Images/CSS_Basic_DefaultCSS.jpeg" alt="Default Browser Added CSS" style="zoom: 85%;" />
 
 To reset the browser default CSS we may use [Eric Meyer's](https://meyerweb.com/eric/tools/css/reset/) CSS Reset.
 
@@ -100,7 +100,7 @@ The following steps happen when a browser loads a web-page:
 5. The render tree is laid out in the structure it should appear in after the rules have been applied to it. 
 6. The visual display of the page is shown on the screen (this stage is called painting). 
 
-   ![Working of CSS](CSS_Images/CSS_Basic_WorkingOfCSS.png)
+   <img src="CSS_Images/CSS_Basic_WorkingOfCSS.png" alt="Working of CSS" style="zoom:75%;" />
 
 ---
 
