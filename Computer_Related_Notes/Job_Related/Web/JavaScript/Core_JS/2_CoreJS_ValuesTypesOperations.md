@@ -1,7 +1,5 @@
 # Values, Types and Operations
 
- 
-
 ## Values
 
 A Computer manipulates *'values'*. The kind of values that can be represented and manipulated in a programming language are known as *types*. When a program needs to retain a value for future use it assigns the value to a *variable*.
@@ -162,7 +160,7 @@ Comparison can be performed as usual in JS. Some quirks include
 
   It's to be noted that `"Z" > "a"`.
 
-* `NaN` is the only Javascript value that is not equal to itself.
+* `NaN` is the only JavaScript value that is not equal to itself.
 
   ```javascript
   console.log(NaN == NaN)
@@ -205,7 +203,7 @@ These two denote the absence of a meaningful value. They are themselves values, 
 
 * `null == undefined` is `true`.  We need to use `===` to distinguish between them.
 
-* Neither null nor undefined have any properties or methods. In fact, using . or [] to access a property or method of these alues causes a TypeError.
+* Neither null nor undefined have any properties or methods. In fact, using . or [] to access a property or method of these values causes a `TypeError`.
 
 
 
@@ -351,7 +349,6 @@ When an operator is applied to the “wrong” type of value, JavaScript will qu
         <td></td>
     </tr>
 </table>
-
 ---
 
 ##### Object to primitive Conversion
@@ -385,10 +382,10 @@ x + ""		// => Same as String(x)
 
 * The *globally* defined symbols that are available to a JavaScript program are *properties* of the global object.
 * When browser starts (or any interpreter starts) the following is defined:
-  * global properties like undefined, Infinity, and NaN
-  * global functions like isNaN(), parseInt() and eval()
-  * constructor functions like Date(), RegExp(), String(), Object(), and Array()
-  * global objects like Math and JSON
+  * global properties like `undefined`, `Infinity`, and `NaN`
+  * global functions like `isNaN()`, `parseInt()` and `eval()`
+  * constructor functions like `Date()`, `RegExp()`, `String()`, `Object()`, and `Array()`
+  * global objects like `Math` and `JSON`
 
 ---
 
