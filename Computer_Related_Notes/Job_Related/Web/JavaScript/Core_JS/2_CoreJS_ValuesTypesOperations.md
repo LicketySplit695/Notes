@@ -38,7 +38,11 @@ JavaScript variables are *untyped*.
 #### Floating point literals
 
 * To represent floating point numbers we may use the following format:
-  * **\[digits] \[.digits] [ (E|e) [ (+|-) ] digits] **
+  * <table>
+        <thead>
+            <tr></tr>
+        </thead>
+    </table>
 
 
 
@@ -353,8 +357,12 @@ When an operator is applied to the “wrong” type of value, JavaScript will qu
 
 ##### Object to primitive Conversion
 
-1.  all objects (including arrays and functions) convert to true.
-2. 
+1.  all objects (including arrays and functions) convert to true. `new Boolean(false)` is an object and thus converts to `true`.
+2.  Objects are converted to string based on 
+    1.  If `toString()` method is present, then it's called, and the output is shown.
+    2.  If `toString()` is not present or doesn't return a primitve value, then `valueOf()` is called.
+    3.  If result of `valueOf()` can't be converted to string then `TypeError` is thrown.
+3.  Obejcts are converted to numbers in the same way as they are converted to strings except that `valueOf()` is tried first, if that can be turned into a Number then that is shown, then `toString()` is tried. If both don't work `TypeError` is thrown.
 
 ---
 
@@ -390,4 +398,6 @@ x + ""		// => Same as String(x)
 ---
 
 [^1]: Support for Octal numbers is implementation defined. Hence it should be used with caution.
+
+
 
