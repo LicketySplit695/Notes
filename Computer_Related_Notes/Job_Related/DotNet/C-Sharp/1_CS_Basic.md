@@ -84,9 +84,166 @@ A .NET Assembly includes:
 
 * JIT Compiler compiles CIL instructions into corresponding machine code, it will cache the results in memory (Thus if a functionality is compiled it may not be necessary to compile it again).
 
-  
+
+
 
 ### Type Metadata
 
+* A .NET assembly contains full, complete, and accurate metadata, which describes every type (e.g., class, structure, enumeration) defined in the binary, as well as the members of each type (e.g., properties, methods, events).
+* Metadata is used by numerous aspects of the .NET runtime environment, as well as by various development tools.
+* Metadata is also used by various object- browsing utilities, debugging tools, and the C# compiler itself. It is the backbone of numerous .NET technologies including WCF, reflection, late binding, and object serialization.
 
+
+
+### Assembly Manifest
+
+* It is the metadata that describes the assembly itself (technically called *manifest*).
+* The manifest documents all external assemblies required by the current assembly to function correctly, the assembly’s version number, copyright information etc.
+
+The compiler emits both the type metadata and the assembly manifest.
+
+
+
+## The Common Type System
+
+* In .NET, type is simply a general term used to refer to a member from the set {class, interface, structure, enumeration, delegate} 
+
+* CTS is a formal **specification** that documents how types must be defined in order to be hosted by the CLR.
+
+* CTS supports the following types:
+
+  * Class Type
+  * Interface type
+  * Structure type
+  * Enumeration type
+  * Delegate type
+
+* A type can have *members* and members can have various characteristics (public-private, static, virtual-abstract etc.).
+
+* C# also supports the creation of generic types and generic members.
+
+* All .NET language keywords ultimately resolve to the same CTS type (**Intrinsic Types**) defined in an assembly named `mscorlib.dll`.
+
+  | CTS Data Type  | C# Keyword |
+  | -------------- | ---------- |
+  | `System.Byte`  | `byte`     |
+  | `System.SByte` | `sbyte`    |
+  | `System.Int16` | `short`    |
+  |	`System.Int32` | `int`		|
+  |	`System.Int64` | `long`		|
+  |	`System.UInt16`| `ushort`	|
+  |	`System.UInt32`| `uint`		|
+  | `System.UInt64`| `ulong`	|
+  | `System.Single`| `float`	|
+  |	`System.Double`| `double` 	|
+  |	`System.Object`| `object` 	|
+  | `System.Char`  | `char` 	|
+  | `System.String`| `string` 	|
+  |	`System.Decimal`| `decimal`	|
+  | `System.Boolean` | `bool`	|
+
+
+
+
+## Common Language Specification
+
+* As you are aware, different languages express the same programming constructs in unique, language-specific terms.
+
+* CLS is a set of rules that describe **the minimal and complete set** of features a given .NET-aware compiler must support to produce code that can be hosted by the CLR, while at the same time be accessed in a uniform manner by all languages that target the .NET platform. 
+
+* The CLS can be viewed as a subset of the full functionality defined by the CTS. 
+
+* The only aspects of a type that must conform to the CLS are **the member definitions themselves** (i.e., naming conventions, parameters, and return types). The implementation logic for a member may use any number of non-CLS techniques, as the outside world won’t know the difference.
+
+* To ensure CLS Compliance we may use the following attribute:
+
+  ```c#
+  // Tell the C# compiler to check for CLS compliance.
+  [assembly: CLSCompliant(true)]
+  ```
+
+  If any CLS violations are discovered, we will receive a compiler time error.
+
+
+
+## The Common Language Runtime
+
+* CLR or any runtime is a collection of services that are required to execute a given compiled unit of code. 
+* The CLR is physically represented by a library named `mscoree.dll` (MS-Common Object Runtime Execution Engine). When an assembly is referenced for use, `mscoree.dll` is loaded automatically, which in turn loads the required assembly into memory.
+* The CLR is responsible for:
+  * it is the agent in charge of resolving the location of an assembly
+  * finding the requested type within the binary by reading the contained metadata and laying out the type in memory
+  * compiling the associated CIL into platform-specific instructions 
+  * performing any necessary security checks, and then executing the code in question.
+  * It will also interact with the types contained within the .NET base class libraries when required.
+* A key assembly is `mscorlib.dll`, which contains a large number of core types that encapsulate a wide variety of common programming tasks, as well as the core data types used by all .NET languages. 
+
+<img src="CSharp_Images/CS_Basic_MSCoree.png" alt="MSCoree.dll in Action" style="zoom:80%;" />
+
+---
+
+### Other Topics
+
+#### Namespaces vs Assemblies
+
+* A namespace is a grouping of semantically related types contained in an assembly or possibly spread
+  across multiple related assemblies.
+
+* Also  a single assembly (such as `mscorlib.dll`) can contain any number of namespace(s), each of which can contain any number of types.
+
+* .NET Base class libraries are mostly platform neutral. 
+
+* Namespaces can be called programmatically as:
+
+  ```c#
+  using System; 
+  ```
+* `using` keyword is simply a shorthand notation for specifying a type’s fully qualified name. This has no effect on performance or the size of the assembly.
+
+
+
+
+#### Microsoft Root Namespace
+
+* The .NET base class library defines a number of topmost root namespaces beyond System, the most useful of which is named `Microsoft`.
+* Any namespace nested within `Microsoft` (e.g., `Microsoft.CSharp`, `Microsoft.ManagementConsole`,
+  `Microsoft.Win32`) contains types that are used to interact with services unique to the Windows operating system.  
+
+
+
+#### The GAC and DLL hell
+
+* DLL Hell is a term used to represent a scenario where Application A installs a Shared DLL v1.0 (it gets stored in the registry), Application B comes and updates the Shared DLL to v1.1 which should be compatible but there are slightly different behaviors, then App A stops working correctly and re-installs v1.0 then App B stops working ans so on.
+
+* GAC a machine-wide directory/cache for the CLR that uses versioning to keep DLL(s) globally accessible without worrying about conflicts (DLL Hell). Each architecture and version gets it's own place to live. 
+
+  GAC is present in `C:\Windows\assembly` in Windows.
+
+  A DLL is identified by 5 parts:
+
+  1. Name
+  2. Version
+  3. Architecture
+  4. Culture
+  5. Public Key
+
+* To install a `.dll` in GAC (in admin mode)
+
+  * Drag and Drop
+
+  * Use `GacUtil.exe` with Visual Studio Command Prompt
+
+    ```bash
+     gacutil -i [Path][Assembly Name].dll
+    ```
+    
+  * To uninstall
+
+    ```bash
+    gacutil -u [Assembly Name], Version=1.0.0.0, PublickeyToken=7896a3567gh
+    ```
+    
+    * To install an assembly into the GAC, the assembly must be [strongly](https://docs.microsoft.com/en-us/dotnet/standard/assembly/strong-named) named.
+
+---
 
