@@ -155,11 +155,11 @@ Comparison can be performed as usual in JS. Some quirks include
 
   ```javascript
   console.log("Aardvark" < "Zoroaster")
-  // → true
+  // -> true
   console.log("Itchy" != "Scratchy")
-  // → true
+  // -> true
   console.log("Apple" == "Orange")
-  // → false
+  // -> false
   ```
 
   It's to be noted that `"Z" > "a"`.
@@ -168,7 +168,7 @@ Comparison can be performed as usual in JS. Some quirks include
 
   ```javascript
   console.log(NaN == NaN)
-  // → false
+  // -> false
   ```
 
 

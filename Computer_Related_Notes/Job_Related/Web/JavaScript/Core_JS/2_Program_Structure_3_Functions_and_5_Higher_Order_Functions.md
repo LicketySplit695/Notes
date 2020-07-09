@@ -422,3 +422,305 @@ A *pure function* is a specific kind of value-producing function that
 
 When a pure function is called with the same arguments, it always produces the same value.
 
+
+
+## IIFE
+
+* An **IIFE** (Immediately Invoked Function Expression) is a [JavaScript](https://developer.mozilla.org/en-US/docs/Glossary/JavaScript) [function](https://developer.mozilla.org/en-US/docs/Glossary/function) that runs as soon as it is defined.
+
+  ```javascript
+  (function () {
+      statements
+  })();
+  ```
+
+* It is a design pattern which is also known as a [Self-Executing Anonymous Function](https://developer.mozilla.org/en-US/docs/Glossary/Self-Executing_Anonymous_Function) and contains two major parts:
+
+  1. The first is the anonymous function with lexical scope enclosed within the [`Grouping Operator`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Grouping) `()`. This prevents accessing variables within the IIFE idiom as well as polluting the global scope.
+  2. The second part creates the immediately invoked function expression `()` through which the JavaScript engine will directly interpret the function.
+
+* Assigning the IIFE to a variable stores the function's return value, not the function definition itself.
+
+  ```javascript
+  let result = (function () {
+      let name = "Barry"; 
+      return name; 
+  })(); 
+  // Immediately creates the output: 
+  console.log(result); // "Barry"
+  ```
+
+* The function becomes a function expression which is immediately executed. The variable within the expression can not be accessed from outside it.
+
+  ```javascript
+  let result = (function () {
+      var aName = "Barry";
+  })();
+  // Variable aName is not accessible from the outside scope
+  console.log(result.aName); // TypeError: Cannot read property 'aName' of undefined
+  ```
+
+
+
+## Higher Order Function
+
+* Functions that operate on other functions, either by taking them as arguments or by returning them, are called higher-order functions.
+* Higher-order functions allow us to abstract over actions, not just values.
+
+ Certain higher order functions are defined for arrays (mostly useful for array of objects). Some are noted with similar alternate representation and use.
+
+
+
+### Looping through Array
+
+`forEach()` loops though and performs an action for every element in the array.
+Alternative Implementation:
+
+```javascript
+let forEach = function(array, action){
+	for(let item of array)
+	{
+		action(item);
+	}
+};
+forEach(["A", "B"], console.log); 
+// -> A
+// -> B
+```
+
+Actual Use:
+
+```javascript
+["A", "B"].forEach(l => console.log(l));
+// -> A
+// -> B
+```
+
+
+
+### Filtering Arrays
+
+`filter()` creates a new array with elements that fall under a given criteria from an existing array. Alternative implementation is as:
+
+```javascript
+function filter(array, test) {
+	let passed = [];
+	for (let element of array) {
+		if (test(element)) {
+			passed.push(element);
+		}
+	}
+	return passed;
+}
+console.log(filter(SCRIPTS, script => script.living));
+// -> [{name: "Adlam", ...}, ...]
+```
+
+The array method can be called as:
+
+```javascript
+console.log(SCRIPTS.filter(function(item) { return item.direction == "ttb"; }));
+// -> [{name: "Mongolian", ...}, ...]
+```
+
+The *item* argument is a reference to the current element in the array as filter() checks it against the *condition*. This is useful for accessing properties, in the case of objects.
+
+If the current *item* passes the condition, it gets sent to the new array.
+
+
+
+### Transforming with map
+
+* The map method transforms an array by applying a function to all of its elements and building a new array from the returned values.
+
+* The new array will have the same length as the input array, but its content will have been mapped to a new form by the function.
+
+  ```javascript
+  function map(array, transform) {
+      let mapped = [];
+      for (let element of array) {
+      	mapped.push(transform(element));
+      }
+      return mapped;
+  }
+  let rtlScripts = SCRIPTS.filter(s => s.direction == "rtl");
+  console.log(map(rtlScripts, s => s.name));
+  // -> ["Adlam", "Arabic", "Imperial Aramaic", ...]
+  ```
+
+  Actual use:
+
+  ```javascript
+  console.log(rtlScripts.map(s => s.name));
+  // -> ["Adlam", "Arabic", "Imperial Aramaic", ...]
+  ```
+
+
+
+### Summarizing with reduce
+
+`reduce()` builds a value by repeatedly taking a single element from the array and combining it with the current value. Alternative representation:
+
+```javascript
+function reduce(array, combine, start) {
+    let current = start;
+    for (let element of array) {
+    	current = combine(current, element);
+    }
+    return current;
+}
+console.log(reduce([1, 2, 3, 4], (a, b) => a + b, 0));
+// -> 10
+```
+
+In actual use if the array contains at least one element, we are allowed to leave off the start argument
+
+```javascript
+console.log([1, 2, 3, 4].reduce((a, b) => a + b));
+// -> 10
+```
+
+---
+
+#### Further note on `reduce()`
+
+The signature for the `reduce` array method in JavaScript is:
+
+```javascript
+arr.reduce(callback, initialValue);
+```
+
+
+
+##### The Accumulator example once again
+
+```javascript
+/* this is our initial value i.e. the starting point*/
+const initialValue = 0;
+
+/* numbers array */
+const numbers = [5, 10, 15];
+
+/* reducer method that takes in the accumulator and next item */
+const reducer = (accumulator, item) => {
+  return accumulator + item;
+};
+
+/* we give the reduce method our reducer function
+  and our initial value */
+const total = numbers.reduce(reducer, initialValue)
+```
+
+* our method is called `3` times because there are `3` values in our array. 
+* Our accumulator begins at `0` which is our `initialValue` we passed to `reduce`. 
+* On each call to the function the `item` is added to the `accumulator`. 
+* The final call to the method has the `accumulator` value of `15` and `item` is `15`, `15 + 15` gives us `30` which is our final value. Remember the `reducer` method returns the `accumulator` plus the `item`.
+
+
+
+#####  Flattening an Array Using Reduce
+
+```javascript
+const numArray = [1, 2, [3, 10, [11, 12]], [1, 2, [3, 4]], 5, 6];
+
+function flattenArray(data) {
+  // our initial value this time is a blank array
+  const initialValue = [];
+
+  // call reduce on our data
+  return data.reduce((total, value) => {
+    // if the value is an array then recursively call reduce
+    // if the value is not an array then just concat our value
+    return total.concat(Array.isArray(value) ? flattenArray(value) : value);
+  }, initialValue);
+}
+```
+
+
+
+##### Changing an Object Structure
+
+```javascript
+const pokemon = [
+  { name: "charmander", type: "fire" },
+  { name: "squirtle", type: "water" },
+  { name: "bulbasaur", type: "grass" }
+];
+
+// We want
+// const pokemonModified = {
+// 	charmander: { type: "fire" },
+// 	squirtle: { type: "water" },
+// 	bulbasaur: { type: "grass" }
+// };
+
+const getMapFromArray = data =>
+  data.reduce((acc, item) => {
+    // add object key to our object i.e. charmander: { type: 'water' }
+    acc[item.name] = { type: item.type };
+    return acc;
+  }, {});
+getMapFromArray(pokemon)
+```
+
+---
+
+
+
+### `some()` method
+
+It takes a test function and tells you whether that function returns true for any of the elements in the array.
+Alternative implementation
+
+```javascript
+let some = function(array, checkFunction){
+    for(let item of array){
+        if(checkFunction(item))
+            return true;
+    }
+    return false;
+}
+
+console.log(some([3, 10, 18, 20], age => age >= 18));
+// -> true
+```
+
+Actual implementation:
+
+```javascript
+var ages = [3, 10, 18, 20];
+
+function checkAdult(age) {
+  return age >= 18;
+}
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = ages.some(checkAdult);
+}
+```
+
+
+
+### `findIndex()` method
+
+It finds the first value for which the given function returns true. Like `indexOf()` , it returns -1 when no such element is found. Alternative implementation:
+
+```javascript
+let findIndex = function(array, checkFunction){
+    for(let i = 0; i < array.length; ++i){
+        if(checkFunction(array[i]))
+            return i;
+    }
+    return -1;
+}
+
+console.log(findIndex([3, 10, 18, 20], age => age >= 18));
+// -> 2
+```
+
+Actual implementation:
+
+```javascript
+console.log([3, 10, 18, 20].findIndex(age => age >= 18));
+```
+
