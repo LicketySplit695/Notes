@@ -124,24 +124,23 @@ The compiler emits both the type metadata and the assembly manifest.
 
 * All .NET language keywords ultimately resolve to the same CTS type (**Intrinsic Types**) defined in an assembly named `mscorlib.dll`.
 
-  | CTS Data Type  | C# Keyword |
-  | -------------- | ---------- |
-  | `System.Byte`  | `byte`     |
-  | `System.SByte` | `sbyte`    |
-  | `System.Int16` | `short`    |
-  |	`System.Int32` | `int`		|
-  |	`System.Int64` | `long`		|
-  |	`System.UInt16`| `ushort`	|
-  |	`System.UInt32`| `uint`		|
-  | `System.UInt64`| `ulong`	|
-  | `System.Single`| `float`	|
-  |	`System.Double`| `double` 	|
-  |	`System.Object`| `object` 	|
-  | `System.Char`  | `char` 	|
-  | `System.String`| `string` 	|
-  |	`System.Decimal`| `decimal`	|
-  | `System.Boolean` | `bool`	|
-
+  | CTS Data Type  | C# Keyword | CLS Compliant |
+  | -------------- | ---------- | ---------- |
+  | `System.Byte`  | `byte`     | Yes  |
+  | `System.SByte` | `sbyte`    | **No** |
+  | `System.Int16` | `short`    | Yes |
+  |	`System.Int32` | `int`		| Yes	|
+  |	`System.Int64` | `long`		| Yes	|
+  |	`System.UInt16`| `ushort`	| **No**	|
+  |	`System.UInt32`| `uint`		| **No**	|
+  | `System.UInt64`| `ulong`	| **No**	|
+  | `System.Single`| `float`	| Yes	|
+  |	`System.Double`| `double` 	| Yes |
+  |	`System.Object`| `object` 	| Yes |
+  | `System.Char`  | `char` 	| Yes |
+  | `System.String`| `string` 	| Yes |
+  |	`System.Decimal`| `decimal`	| Yes	|
+  | `System.Boolean` | `bool`	| Yes	|
 
 
 
