@@ -197,7 +197,7 @@ string userMessage = string.Format("100000 in hex is {0:x}", 100000);
 
 * C# data type keywords are actually shorthand notations for full-blown types in the System namespace. 
 * The Length of a C# string is Limited by system memory only.
-* `decimal` is a 128-bit signed number whereas float and double are 32-bit and 64-bit floating point number. A difference between fixed point and floating point number can be found [here]([https://www.tutorialspoint.com/fixed-point-and-floating-point-number-representations#:~:text=The%20floating%20number%20representation%20of,be%20fraction%20or%20an%20integer.](https://www.tutorialspoint.com/fixed-point-and-floating-point-number-representations#:~:text=The floating number representation of,be fraction or an integer.)).
+* `decimal` is a 128-bit signed number whereas float and double are 32-bit and 64-bit floating point number. A difference between fixed point and floating point number can be found [here](https://www.tutorialspoint.com/fixed-point-and-floating-point-number-representations).
 * By default, a floating-point number is treated as a `double`. To declare a `float` variable, use the suffix f or F (as in `5.3F`), and use the suffix m or M to a floating-point number to declare a `decimal` (as `300.5M`). 
 * Similarly raw whole numbers default to an `int` data type. To set the underlying data type to a `long`,
   suffix l or L (`4L`).
