@@ -137,7 +137,7 @@ console.log(sequence.shift());
 
 * Property name is case sensitive.
 
-* Almost all JavaScript values have properties. The exceptions are null and undefined.
+* Almost all JavaScript values have properties. The exceptions are `null` and `undefined`.
 
   ```javascript
   null.length;
@@ -331,18 +331,20 @@ console.log(b); // 20
 
 A detailed description can be found [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment).
 
+
+
 ## JSON
 
 * JSON stands for JavaScript Object Notation is a popular serialization (converting data into a flat format) format.
 * JSON looks similar to JavaScript’s way of writing arrays and objects, with a few restrictions:
-  * All property names have to be surrounded by double quotes
+  * All property names have to be surrounded by double quotes (single quotes or backticks not allowed)
   * Only simple data expressions are allowed — no function calls, bindings, or anything that involves actual computation
   * Comments are not allowed
 
 ```javascript
 {
-"squirrel": false,
-"events": ["work", "touched tree", "pizza", "running"]
+	"squirrel": false,
+	"events": ["work", "touched tree", "pizza", "running"]
 }
 ```
 

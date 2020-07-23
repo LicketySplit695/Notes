@@ -79,7 +79,7 @@ console.log(x); 	// -> Prints Angshuman not 5
 
 #### Hoisting
 
-* Variables declared with `var` keyword are [hoisted](https://dev.to/godcrampy/the-secret-of-hoisting-in-javascript-egi) (initialised with `undefined` before the code is run) which means they are accessible in their enclosing scope even before they are declared.
+* Variables declared with `var` keyword are [hoisted](https://dev.to/godcrampy/the-secret-of-hoisting-in-javascript-egi) (initialized with `undefined` before the code is run) which means they are accessible in their enclosing scope even before they are declared.
 
 * `let` variables are not initialized until their definition is evaluated. Accessing them before the initialization results in a `ReferenceError`. Variable said to be in "temporal dead zone" from the start of the block until the initialization is processed.
 
@@ -211,7 +211,7 @@ console.log(square(12));
 
 ```javascript
 const halve = function(n) {
-return n / 2;
+	return n / 2;
 };
 let n = 10;
 console.log(halve(100));
@@ -321,7 +321,7 @@ Points:
   // -> 5
   ```
 
-* If we write an = operator after a parameter, followed by an expression, the value of that expression will replace the argument when it is not given as in C.
+* If we write an = operator after a parameter, followed by an expression, the value of that expression will replace the argument when it is not given (default parameter as in C).
 
 
 

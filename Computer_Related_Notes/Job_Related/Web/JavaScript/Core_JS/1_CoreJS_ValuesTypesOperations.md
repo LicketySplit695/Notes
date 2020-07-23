@@ -30,19 +30,16 @@ JavaScript variables are *untyped*.
 
 #### Integer Literals
 
-* Hexadecimal literals begin with '0x' or '0X'.
-* Octal numbers start with '0'.[^1]
+* Hexadecimal literals begin with `0x` or `0X`.
+* Octal numbers start with `0`.[^1]
 
 
 
 #### Floating point literals
 
 * To represent floating point numbers we may use the following format:
-  * <table>
-        <thead>
-            <tr></tr>
-        </thead>
-    </table>
+
+  `[digits][.digits][(E|e)[(+|-)]digits]`
 
 
 
@@ -362,7 +359,7 @@ When an operator is applied to the “wrong” type of value, JavaScript will qu
     1.  If `toString()` method is present, then it's called, and the output is shown.
     2.  If `toString()` is not present or doesn't return a primitve value, then `valueOf()` is called.
     3.  If result of `valueOf()` can't be converted to string then `TypeError` is thrown.
-3.  Obejcts are converted to numbers in the same way as they are converted to strings except that `valueOf()` is tried first, if that can be turned into a Number then that is shown, then `toString()` is tried. If both don't work `TypeError` is thrown.
+3.  Objects are converted to numbers in the same way as they are converted to strings except that `valueOf()` is tried first, if that can be turned into a Number then that is shown, then `toString()` is tried. If both don't work `TypeError` is thrown.
 
 ---
 

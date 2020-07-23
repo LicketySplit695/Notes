@@ -1,6 +1,8 @@
 # Object Oriented Concepts in JavaScript
 
- ## Encapsulation
+
+
+## Encapsulation
 
 * The idea of Encapsulation is to divide programs into smaller pieces and make each piece responsible for managing its own state.
 
@@ -70,13 +72,14 @@
 
 * When an object gets a request for a property that it does not have, its prototype will be searched for the property, then the prototype’s prototype, and so on.
 
-* The entity behind all objects is the `Object.prototype`. `Object.getPrototypeOf()` returns the prototype of the object.
+* The entity behind all objects is the `Object.prototype`. 
+  `Object.getPrototypeOf()` returns the prototype of the object.
 
   ```javascript
-  console.log(Object.getPrototypeO({}) == Obejct.prototype);
+  console.log(Object.getPrototypeOf({}) == Obejct.prototype);
   // -> true
   console.log(Object.getPrototypeOf(Object.prototype));
-// -> null
+  // -> null
   ```
 
 * The prototype relations of JavaScript objects form a tree-shaped structure, and at the root of this structure sits `Object.prototype`. It provides a few methods that show up in all objects, such as `toString()`, which converts an object to a string representation.
@@ -144,10 +147,10 @@ let blackRabbit = new Rabbit("black");
 * Class can be used in statements and in expressions (similar to functions)
 
   * When used as an expression, it doesn’t define a binding but just produces the constructor as a value. 
-  * Class name may be omitted.
+  * Class name may be omitted in such cases.
 
   ```javascript
-  let object = new class { getWord() { return "hello"; } };
+  let object = new class { getWord() { return "hello"; } }; // class name omitted
   console.log(object.getWord());
   // -> hello
   ```
@@ -162,7 +165,7 @@ let blackRabbit = new Rabbit("black");
 
 * Prototypes were useful for defining properties for which all instances of a class share the same value, such as methods.
 
-* Prototypes can be used to implement Inheritance among classes. Using prototype we can implement a constructor (i.e. a function that returns object):
+* Prototypes can be used to implement Inheritance among classes. Using prototype we can implement a constructor (i.e., a function that returns object):
 
   ```javascript
   function makeRabbit(type) {
@@ -198,4 +201,6 @@ let blackRabbit = new Rabbit("black");
     ```
 
 ---
+
+
 
