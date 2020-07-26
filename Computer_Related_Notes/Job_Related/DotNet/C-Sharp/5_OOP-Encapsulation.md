@@ -14,7 +14,7 @@
       double speed;
       
       //Using the expression-bodied member syntax introduced in C# 6
-      public void PrintState() => Console.WriteLine($"The speed is ${ speed }kmph.")
+      public void PrintState() => Console.WriteLine($"The speed is { speed }kmph.")
   }
   ```
 
