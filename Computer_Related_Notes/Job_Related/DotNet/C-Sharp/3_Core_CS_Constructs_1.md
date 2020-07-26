@@ -535,7 +535,7 @@ string greeting = string.Format("\tHello {0} you are {1} years old.", {name.ToUp
 
 * Narrowing is when a larger value is stored within a smaller data type variable.
 
-* All narrowing conversions result in a compiler error, even when you canreason that the narrowing conversion should indeed succeed.
+* All narrowing conversions result in a compiler error, even when you can reason that the narrowing conversion should indeed succeed.
 
   ```c#
   // Compiler Error

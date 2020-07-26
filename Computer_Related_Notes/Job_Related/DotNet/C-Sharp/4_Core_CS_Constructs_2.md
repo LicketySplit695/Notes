@@ -709,7 +709,7 @@ The following outline provides an overview of C#'s type system.
 ### Notes on Value and Reference types
 
 * A variable of a value type contains an instance of the type while variables of reference types store references to their data (objects).
-* C# structures do not have an identically named representation in the .NET library (that is, there is no System.Structure class) but are implicitly derived from `System.ValueType`. Simply put, the role of System.ValueType is to ensure that the derived type (e.g., any structure) is allocated on the stack, rather than the garbage-collected heap i.e. to override the virtual methods defined by `System.Object` to use value-based versus reference-based semantics.
+* C# structures do not have an identically named representation in the .NET library (that is, there is no `System.Structure` class) but are implicitly derived from `System.ValueType`. Simply put, the role of `System.ValueType` is to ensure that the derived type (e.g., any structure) is allocated on the stack, rather than the garbage-collected heap i.e. to override the virtual methods defined by `System.Object` to use value-based versus reference-based semantics.
 
 
 
