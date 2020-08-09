@@ -100,7 +100,7 @@ Motorcycle m2 = new Motorcycle(name:"Tiny");
 
 ## `this` Keyword
 
-* `this` keyword that provides access to the current class instance. 
+* `this` keyword that provides access to the current class **instance**. 
   * A possible use of the this keyword is to resolve scope ambiguity.
   * When a class wants to access its own data fields or members, a `this` is implied.
 
@@ -149,4 +149,121 @@ Motorcycle m2 = new Motorcycle(name:"Tiny");
 	  ```
 
 
+
+## `static` Keyword
+
+* The `static` members are **invoked directly from the class level**, rather than from an object reference variable. For example:
+
+  ```c#
+  Console.WriteLine("Hello World"); // -> WriteLine() is a static function of Console Class
+  ```
+
+* `static` can be:
+
+  * Data
+
+  * Method
+
+  * Property
+
+  * A Constructor
+
+  * Entire Class
+
+    
+
+---
+
+#### Where to use a `static` member
+
+1. `static` member can be used for 'utlity' classes like `Console`. Classes which are meant to add functionalty to other classes.
+2. `static` member can be used to denote a 'state' or 'functionality' which is common for all instances like 'interestRate' etc.
+
+---
+
+
+
+### `static` field data
+
+* Static data, is allocated once and shared among all objects of the same class category. 
+
+```c#
+public static double currInterestRate = 0.04;
+```
+
+* When we create new instances of a class, the value of the static data is not reset, as the CLR allocates the static data into memory exactly one time. After that point, all objects of the class operate on the same value of the static field.
+* `static` field is always auto initialzed to the default value (0 for int, False for bool etc).
+
+
+
+### `static` methods and properties
+
+* `static` methods are useful to operate on `static` data member.
+* It is a **compiler error** for a static member to reference nonstatic members in its implementation. It is an error to use the `this` keyword on a static member because `this` implies an object.
+
+    ```c#
+    class Program
+    {
+        int x = 4;
+        // -> Illegal to use a non static member without object reference
+        static void Main(){ Console.WriteLine(x);} 
+        
+        // -> to use `x` it must be declared `static`
+    }
+    ```
+
+
+
+### `static`  constructors
+
+* The CLR calls all static constructors before the first use (and never calls them again for that instance of the application)
+
+* Useful to set the values of `static` data members.
+
+* A given class may define only a single static constructor. In other words, the static constructor **cannot be overloaded**.
+
+* A static constructor **does not take an access modifier** and cannot take any parameters.
+
+* The runtime invokes the static constructor when it creates an instance of the class or before accessing the first static member invoked by the caller. The static constructor executes before any instance-level constructors.
+
+  ```c#
+  class Test
+  {
+      static int t;
+      // -> No Access specifiers like `public`
+      public static Test(int p) // -> NO Parameters
+      {
+          t = p;
+      }
+  }
+  ```
+
+
+
+### `static`  classes
+
+* When a class has been defined as `static`, it is not created using the `new` keyword.
+* It <u>can contain only members or data fields marked with the static keyword</u>. Else, we will receive compiler errors.
+* 'Utility' classes can be created static.
+
+
+
+---
+
+#### Importing `static` members by `using` keyword
+
+Post C# 6 we can import static members with the using keyword.
+
+```c#
+using static System.Console; //-> Console is a static class
+
+static void Main()
+{
+    WriteLine("Hello World");
+}
+```
+
+In the code we don't need to write `Console` anymore. 
+
+---
 
