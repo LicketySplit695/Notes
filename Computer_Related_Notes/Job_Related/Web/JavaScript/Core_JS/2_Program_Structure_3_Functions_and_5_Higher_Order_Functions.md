@@ -194,7 +194,7 @@ x = 2; // TypeError: Assignment to constant variable.
 
 ```javascript
 const square = function(x) {
-return x * x;
+	return x * x;
 };
 console.log(square(12));
 // -> 144
@@ -367,7 +367,7 @@ console.log(max(4, 1, 9, -2));
 
 * A **closure** is the combination of a function bundled together (enclosed) with references to its surrounding state (the **lexical environment**). 
 * In other words, a closure gives us access to an outer function’s scope from an inner function. 
-* In JavaScript, closures are created every time a function is created, at function creation time and different calls can’t trample on one another's local bindings.
+* In JavaScript, closures are created every time a function is created, at function creation time and different calls can’t trample on one another s local bindings.
 
 ```javascript
 function wrapValue(n) {	
