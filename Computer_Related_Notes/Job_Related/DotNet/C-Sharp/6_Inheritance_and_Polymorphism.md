@@ -165,3 +165,145 @@ public class OuterClass
 * We must qualify nested type by the scope of the nesting type. 
 * The nesting process can be as “deep” as we require.
 
+
+
+# Polymorphism
+
+## Method Overriding
+
+### `virtual` and `override` keywords
+
+*  If methods in base class that **may** be (but does not have to be) overridden by a child class (*virtual* methods), then it has to be marked by a `virtual` keyword.
+* If the child class wants to change the implementation of a virtual method, it can be done by `override` keyword.
+
+```c#
+//Main method
+Printer pr = new Printer();
+pr.print("Hello World");
+
+class Printer: RealPrinter
+{
+    public override void print(string message)
+    {
+        base.print(message);
+        Console.WriteLine("Printer class: " + message);
+    }
+}
+
+class RealPrinter
+{
+    public virtual void print(string message)
+    {
+        Console.WriteLine("RealPrinter class: " + message);
+    }
+}
+
+/*
+RealPrinter class: Hello World
+Printer class: Hello World
+*/
+```
+
+* If we dont provide `virtual` or `override` keyword, a warning will be shown saying that to hide the base class mthood explicitly, use the `new` keyword.
+
+
+
+### Sealing virtual members
+
+* Sealed methods can't be overridden. Doing so generates a compile-time error.
+
+```c#
+class SalesPerson : Employee
+{
+    ...
+    public override sealed void GiveBonus(float amount) // Its defined in the employee class as virtual.
+    {
+    ...
+    }
+}
+
+// Can't override GiveBonus in classes that inherit SalesPerson
+```
+
+
+
+## Abstract Class
+
+* We may define a class as `abstract` if the entity it doesn't define a tangible entity. For ex. *shape*.
+* Abstract classes 
+  * Can't be implemented on its own.
+  * **May** have an *abstract* method. However an *abstract* method **must** be inside an *abstract* class.
+  * The class inheriting an abstract class **must** implement all the **abstract** members. If some abstract members are not implemented, then the implementing class must be abstract as well.
+  * can have any number of constructors.
+* Abstract methods/members:
+  * do not provide any implementation
+  * can't be private.
+  * has to be explicitly overridden using the `override` keyword. Method hiding can't be used to implement the abstract method. While overriding the access specifier of the abstract method can't be changed.
+* Creating references of abstract class is perfectly legal.
+
+```c#
+square sq = new square("sq_1");
+sq.draw();
+
+class square: shape
+{
+    public square(string name): base(name) {}
+
+    public override void draw() // explicitly overriding
+    {
+        Console.WriteLine($"A { Name } square is drawn.");
+    }
+}
+
+abstract class shape
+{
+    public shape(string name) => Name = name;
+
+    public string Name { get; set; }
+
+    public abstract void draw();
+}
+
+// A sq_1 square is drawn.
+```
+
+
+
+### Shadowing or hiding
+
+* To reimplement a method of a base class we should use the `new` keyword. If not used we will get a warning.
+
+```c#
+class square: shape
+{
+    public square(string name): base(name) {}
+
+    public new void draw()
+    {
+        Console.WriteLine($"A { Name } square is drawn.");
+    }
+}
+
+class shape
+{
+    public shape(string name) => Name = name;
+
+    public string Name { get; set; }
+
+    public void draw()
+    {
+        Console.WriteLine("Shape Class");
+    }
+}
+```
+
+* We can apply the `new` keyword to any member type inherited from a base class (field, constant, static member, or property).
+
+* To trigger the base class implementation of a shadowed member we can use an explicit cast.
+
+  ```c#
+  square sq = new square();
+  ((shape)sq).draw();
+  ```
+
+  
