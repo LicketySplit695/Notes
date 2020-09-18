@@ -739,35 +739,55 @@ unchecked
 
 * In C# 7, switch statements can also employ the type pattern, where case statements can evaluate the type of the variable being checked and case expressions are no longer limited to constant values. `goto` statements are not supported using the type pattern.
 
-```c#
-switch (choice)
-{
-    case int i:
-        Console.WriteLine("Your choice is an integer {0}.",i);
-        break;
-    case string s:
-        Console.WriteLine("Your choice is a string. {0}", s);
-        break;
-    default:
-        Console.WriteLine("Your choice is something else");
-        break;
-}
-```
+  ```c#
+  switch (choice)
+  {
+      case int i:
+          Console.WriteLine("Your choice is an integer {0}.",i);
+          break;
+      case string s:
+          Console.WriteLine("Your choice is a string. {0}", s);
+          break;
+      default:
+          Console.WriteLine("Your choice is something else");
+          break;
+  }
+  ```
 
 * `when` clauses can be added to the case statements to evaluate conditions on the variable.
 
-```c#
-switch (choice)
-{
-    case int i when i == 2:
-    case string s when s.Equals("VB", StringComparison.OrdinalIgnoreCase):
-        Console.WriteLine("VB: OOP, multithreading, and more!");
-        break;
-    default:
-        Console.WriteLine("Well...good luck with that!");
-        break;
-}
-```
+  ```c#
+  switch (choice)
+  {
+      case int i when i == 2:
+      case string s when s.Equals("VB", StringComparison.OrdinalIgnoreCase):
+          Console.WriteLine("VB: OOP, multithreading, and more!");
+          break;
+      default:
+          Console.WriteLine("Well...good luck with that!");
+          break;
+  }
+  ```
+
+* An example of above with user defined type
+
+  ```c#
+  switch (emp)    // emp is of type Employee
+  {
+      case SalesPerson s:     // SalesPerson is-an Employee
+          Console.WriteLine("{0} made {1} sale(s)!", emp.Name, s.SalesNumber);
+    	  break;
+      case Manager m:         // Manager is-a Employee
+    	  Console.WriteLine("{0} had {1} stock options...", emp.Name, m.StockOptions);
+    	  break;
+  }
+  ```
+
+* When adding a when clause to the case statement, the full definition of the object as it is cast is available for use.
+
+    ```c#
+    case SalesPerson s when s.SalesNumber > 5:
+    ```
 
 * The following code will give a compile time error
 
@@ -782,5 +802,3 @@ switch (choice)
           break;
   }
   ```
-
-  

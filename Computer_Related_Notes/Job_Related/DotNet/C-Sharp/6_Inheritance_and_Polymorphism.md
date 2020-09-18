@@ -273,7 +273,7 @@ abstract class shape
 
 * To reimplement a method of a base class we should use the `new` keyword. If not used we will get a warning.
 
-```c#
+```:Wc#
 class square: shape
 {
     public square(string name): base(name) {}
@@ -306,4 +306,223 @@ class shape
   ((shape)sq).draw();
   ```
 
-  
+
+
+## Base/derived class casting
+
+* 'Implicit cast' is allowed. When two classes are related by an “is-a” relationship, it is always safe to store a *derived object* within a *base class* reference.
+
+    ```c#
+    shape sh = new square("sq_1"); // valid
+    sh.draw();      //"Shape Class"
+    ```
+  * Note that in the above example although the `sh` is instantiated by the **child class**, but since the **reference** is of the <u>parent class</u> we see that the parent class member is executed. We can <u>only use the members of the referenced class</u> (`shape` here).
+
+* Explicit cast needs to be applied when we want to use the member of a child class:
+
+    ```c#
+    object sh = new square("sq_1");
+    sh.draw();  // Error
+    ((square)sh).draw(); // OK
+    ```
+    * Explicit casting is **evaluated at runtime**. Thus the following code is valid at the compile-time:
+      
+        ```c#
+        object frank = new Manager();   // Manager is-an Employee
+        Hexagon hex = (Hexagon)frank;   // Hexagon is-a shape
+        ```
+
+
+
+### `as` Keyword
+
+* `as` keyword **type-casts** an object into a type (both reference and nullable) if possible. If not it returns a `null` (which can be checked to determine if the casting was successfull).
+
+    ```c#
+    object[] things = new object[4];
+    things[0] = new Hexagon();
+    things[1] = false;
+    things[2] = new Manager();
+    foreach (object item in things)
+    {
+        Hexagon h = item as Hexagon;    // Cast to Hexagon if possible
+        if (h == null) Console.WriteLine("Item is not a hexagon");
+        else h.Draw();
+    }
+    ```
+    
+    * Unlike `cast` expressions an `as` doesn't throw and exception.
+
+
+
+### `is` Keyword
+
+* The `is` operator checks if the runtime type of an expression result is compatible with a given type. If its is compatible the expression returns `true`.
+
+    ```c#
+    public class Base { }
+    public class Derived : Base { }
+    public static class IsOperatorExample
+    {
+        public static void Main()
+        {
+            object b = new Base();
+            Console.WriteLine(b is Base);  // output: True
+            Console.WriteLine(b is Derived);  // output: False
+    
+            object d = new Derived();
+            Console.WriteLine(d is Base);  // output: True
+            Console.WriteLine(d is Derived); // output: True
+        }
+    }
+    ```
+
+* Beginning C# 7 we also have the following:
+
+    ```
+    E is T v
+    ```
+
+    * If the result of E is non-null and can be converted to T by a reference, boxing, or unboxing conversion, the E is T v expression returns true and the converted value of the result of E is assigned to variable v.
+
+        ```c#
+        if(emp is Manager m)
+        {
+            Console.WriteLine($"{ emp.name } has { m.stockOptions } stocks");
+        }
+        ```
+
+    * This new step avoids the "double-cast" problem of traditional `is` keyword. 
+
+
+
+## `System.Object` in .NET
+
+* Every type ultimately derives from a base class named `System.Object` which is represented by C# `object` keyword.
+* The interface of the `object` can be represented as:
+
+    ```c#
+    public class object
+    {
+        // Virtual Memebers
+        public virtual bool Equals(object obj);
+        protected virtual void Finalize();
+        public virtual int GetHashCode();
+        public virtual string ToString();
+
+        // Instance-level members
+        public Type GetType();
+        protected object MemberwiseClone();
+
+        // static members
+        public static bool Equals(object objA, object objB);
+        public static bool ReferenceEquals(object objA, object objB);
+    }
+    ```
+
+
+
+* To test thw above we use the following example class 
+
+    ```c#
+    class Person
+    {
+        public string FirstName { get; set; } = "";
+        public string LastName { get; set; } = "";
+        public int Age { get; set; }
+        public Person(string fName, string lName, int personAge)
+        {
+            FirstName = fName;
+            LastName = lName;
+            Age = personAge;
+        }
+        public Person(){}
+    }
+    ```
+
+
+
+### `ToString()` method
+
+* It should return a string textual representation of the type’s current state.
+
+
+
+#### Overriding `ToString()`
+
+* A proper ToString() override should also account for any data defined up the chain of inheritance.
+* For custom base class, we may want to obtain the `ToString()` of the base class using `base` keyword. We can use that in our child class.
+
+    ```c#
+    public override string ToString() => $"[First Name: {FirstName}; Last Name: {LastName}; Age: {Age}]";
+    ```
+    * The above convention is followed in many library classes.
+
+
+
+### `Equals()` method
+
+* The default behavior of Equals() is to test (by returning `true`) whether two variables are pointing to the same object in memory.
+
+    ```c#
+    Person p1 = new Person();
+    Person p2 = p1;
+    object o = p2;
+    if (o.Equals(p1) && p2.Equals(o))
+    {
+        Console.WriteLine("Same instance!");
+    }
+    //Same instance
+    ```
+
+* If we intend to override `Equals()` we should override `GetHashCode()` as well.
+
+
+
+#### Overriding `Equals()`
+
+```c#
+public override bool Equals(object o)
+{
+    if(o != null && o is Person p)
+    {
+        return (p.FirstName == this.FirstName && p.LastName == this.LastName && p.Age == this.Age);
+    }
+
+    return false;
+}
+```
+
+
+
+### `GetHashCode()` function
+
+* A hash code is a numerical value that represents an object as a *particular state*.
+* By default, `System.Object.GetHashCode()` uses your object’s **current location in memory** to yield the hash value.
+    * Thus we should override the `GetHashCode()` function whenever we are overriding the `Equals()` method.
+* The `GetHashCode()` method should reflect the `Equals` logic; the rules are:
+    1. if two things are equal (`Equals(...) == true`) then they must return the same value for `GetHashCode()`
+    2. if the `GetHashCode()` is equal, it is not necessary for them to be the same; this is a collision, and `Equals` will be called to see if it is a real equality or not.
+* What value should be used to override the hashCode is not always the same. A common example is as follows:
+
+    ```c#
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+    ```
+    * The following [thread](https://stackoverflow.com/questions/371328/why-is-it-important-to-override-gethashcode-when-equals-method-is-overridden) may be consulted.
+
+
+
+### The static functions of `System.Object`
+
+#### `object.Equals(object, object)`
+
+* Value based equality. Behaves same as instance based virtual function.
+
+
+
+#### `object.ReferenceEquals(object. object)`
+
+* Reference based equality checker. If two objects are of different instance, just same in value yields `false`, although `Equals()` return `true`.
