@@ -220,7 +220,7 @@ public static double currInterestRate = 0.04;
 ```
 
 * When we create new instances of a class, the value of the static data is not reset, as the CLR allocates the static data into memory exactly one time. After that point, all objects of the class operate on the same value of the static field.
-* `static` field is always auto initialzed to the default value (0 for int, False for bool etc).
+* `static` field is always auto initialized to the default value (0 for int, False for bool etc).
 
 
 
@@ -356,7 +356,7 @@ The following are the access modifiers supported by C#.
 
 ### Access modifiers for Nested Types
 
-* Nested type is implicity private. We may apply any access modifier we may want.
+* Nested type is implicitly private. We may apply any access modifier we may want.
 
 ```c#
 // Inside Program class
@@ -523,7 +523,7 @@ public int Age
 
 ### Initializing objects with properties
 
-* For classes that has public writeable properties or public fields, we may use the object initialization syntax:
+* For classes that has public write-able properties or public fields, we may use the object initialization syntax:
 
   ```c#
   // Inside main method
@@ -573,7 +573,7 @@ class MyMathClass
 * A read-only field cannot be changed after the initial assignment.
   * The value assigned to a read-only field can be determined at **runtime** and, therefore, can legally be assigned within the scope of a **constructor** but nowhere else.
 * Unlike a constant field, read-only fields are **not implicitly static**.
-* Any attempt to make assignments to a field marked readonly outside the scope of a constructor results in a compiler error.
+* Any attempt to make assignments to a field marked `readonly` outside the scope of a constructor results in a compiler error.
 
 ```c#
 class MyMathClass
@@ -591,9 +591,9 @@ class MyMathClass
 
 
 
-### Static readonly fields
+### Static read-only fields
 
-* If a readonly field needs to be associated with the class and not with the object we may use `static readonly`.
+* If a `readonly` field needs to be associated with the class and not with the object we may use `static readonly`.
 
   * To initialize such field we need static constructors.
 
@@ -606,13 +606,13 @@ class MyMathClass
   }
   ```
 
-* If the value of readonly field is known at compile-time its better to use `const`.
+* If the value of `readonly` field is known at compile-time its better to use `const`.
 
 
 
 ## Partial Classes
 
-* We may split the definition of class to mutiple files using `partial` keyword before each definition
+* We may split the definition of class to multiple files using `partial` keyword before each definition
 
   ```c#
   // file1
