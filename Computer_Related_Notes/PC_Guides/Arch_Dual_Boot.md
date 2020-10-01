@@ -483,13 +483,19 @@ or,
 
 ## After reboot
 
-1. Install display server
+1. **Check the status of `btrfs` subvolumes**
+
+    ```
+    sudo btrfs subvol list -p /
+    ```
+
+2. Install display server
 
     ```
     pacman -S xorg xorg-xinit
     ```
 
-2. Install display manager
+3. Install display manager
 
     ```
     pacman -S sddm
@@ -501,27 +507,28 @@ or,
         sudo systemctl enable sddm
         ```
 
-3. Install KDE plasma
+4. Install KDE plasma
 
     ```
     sudo pacman -S plasma 
     ```
 
-4. Install the following KDE apps
+5. Install the following KDE apps
 
     ```
     konsole
     dolphin
     firefox
     kate
-    breeze-gtk
-    kde-gtk-config
-    kdeplasma-addons
+    packagekit-qt5
+    breeze-gtk  # Should be installed with plasma
+    kde-gtk-config  # Should be installed with plasma
+    kdeplasma-addons    # Should be installed with plasma
     plasma-nm   # Should be installed with plasma
     plasma-pa   # Should be installed with plasma
     ```
 
-5. The follwing are additional KDE applications 
+6. The follwing are additional KDE applications 
 
     ```
     ark
