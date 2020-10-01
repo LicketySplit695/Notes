@@ -305,7 +305,7 @@ or,
 
 14. **Create the `locale`**
 
-    * Edit the `/etc/locale.gen` file, by un-commenting `en_US.UTF-8 UTF-8`.
+    * Edit the `/etc/locale.gen` file, by un-commenting `en_US.UTF-8 UTF-8` and `en_IN UTF-8`.
     * Generate locale
 
         ```
@@ -316,15 +316,15 @@ or,
 
         ```
         LANG=en_US.UTF-8
-        LC_ADDRESS=en_IN
-        LC_IDENTIFICATION=en_IN
-        LC_MEASUREMENT=en_IN
-        LC_MONETARY=en_IN
-        LC_NAME=en_IN
-        LC_NUMERIC=en_IN
-        LC_PAPER=en_IN
-        LC_TELEPHONE=en_IN
-        LC_TIME=en_IN
+        LC_ADDRESS=en_IN.UTF-8
+        LC_IDENTIFICATION=en_IN.UTF-8
+        LC_MEASUREMENT=en_IN.UTF-8
+        LC_MONETARY=en_IN.UTF-8
+        LC_NAME=en_IN.UTF-8
+        LC_NUMERIC=en_IN.UTF-8
+        LC_PAPER=en_IN.UTF-8
+        LC_TELEPHONE=en_IN.UTF-8
+        LC_TIME=en_IN.UTF-8
         ```
 
 15. **Hostname**
