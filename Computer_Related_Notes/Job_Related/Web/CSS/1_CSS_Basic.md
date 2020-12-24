@@ -2,25 +2,27 @@
 
 #### Definition
 
-**Cascading Style Sheets** (**CSS**) is a style sheet language used for describing the ==presentation== of a document written in a ==markup language== like HTML. 
+**Cascading Style Sheets** (**CSS**) is a style sheet language used for describing the **presentation** of a document written in a **markup language** like HTML. 
 
 
 
 ## CSS Syntax
 
-The following defines a **CSS Ruleset**
+* The following defines a **CSS Ruleset**
 
-![CSS Ruleset](CSS_Images/CSS_Basic_Ruleset.jpeg "Ruleset")
+  ![CSS Ruleset](CSS_Images/CSS_Basic_Ruleset.jpeg "Ruleset")
 
 * CSS is developed by a group within *W3C* called the **CSS working group**. It is comprised of representatives from browser companies and other independent experts. 
 
+
+
 ### Default Browser Added Syntax
 
-Even if we don’t add our own CSS, the browser adds some default CSS to the document, as shown: 
+* Even if we don’t add our own CSS, the browser adds some default CSS to the document, as shown: 
 
-<img src="CSS_Images/CSS_Basic_DefaultCSS.jpeg" alt="Default Browser Added CSS" style="zoom: 85%;" />
+  <img src="CSS_Images/CSS_Basic_DefaultCSS.jpeg" alt="Default Browser Added CSS" style="zoom: 85%;" />
 
-To reset the browser default CSS we may use [Eric Meyer's](https://meyerweb.com/eric/tools/css/reset/) CSS Reset.
+* To reset the browser default CSS we may use [Eric Meyer's](https://meyerweb.com/eric/tools/css/reset/) CSS Reset.
 
 
 
@@ -28,11 +30,11 @@ To reset the browser default CSS we may use [Eric Meyer's](https://meyerweb.com/
 
 #### Note on CSS Syntax
 
-If a property is unknown or if a value is not valid for a given property, the declaration is deemed *invalid* and is completely ignored by the browser's CSS engine. 
+* If a property is unknown or if a value is not valid for a given property, the declaration is deemed *invalid* and is completely ignored by the browser's CSS engine. 
 
-This is useful in a sense that if we want to use new CSS tricks that old browsers don’t understand, we can add the trick after the conventional approach, so that old browsers ignore the trick and new browsers overwrite the conventional code with the trick. 
+  * This is useful in a sense that if we want to use new CSS tricks that old browsers don’t understand, we can add the trick after the conventional approach, so that old browsers ignore the trick and new browsers overwrite the conventional code with the trick. 
 
-In CSS (and other web standards), US spelling has been agreed on as the standard to stick to where language uncertainty arises. 
+* In CSS (and other web standards), US spelling has been agreed on as the standard to stick to where language uncertainty arises. 
 
 ---
 
@@ -70,6 +72,8 @@ In CSS (and other web standards), US spelling has been agreed on as the standard
    <a style="color: blue;" href='http://www.example.com' title="Isn't this fun?">A link to my example.</a> 
    ```
 
+
+
 ---
 
 #### Note
@@ -102,32 +106,35 @@ The following steps happen when a browser loads a web-page:
 
    <img src="CSS_Images/CSS_Basic_WorkingOfCSS.png" alt="Working of CSS" style="zoom:75%;" />
 
+
+
 ---
 
 #### Representation of DOM
 
-Assuming the following code is at hand 
+* Assuming the following code is at hand 
 
-```html
-<p> 
-  Let's use: 
-    <span>Cascading</span> 
-    <span>Style</span> 
-    <span>Sheets</span> 
-</p> 
-```
+  ```html
+  <p> 
+    Let's use: 
+      <span>Cascading</span> 
+      <span>Style</span> 
+      <span>Sheets</span> 
+  </p> 
+  ```
 
-The corresponding DOM will look like 
+* The corresponding DOM will look like 
 
-P 
-
-├─ "Let's use:" 
-|─ SPAN 
-|    └─ "Cascading" 
-├─ SPAN 
-|    └─ "Style" 
-└─ SPAN 
-	└─ "Sheets" 
+  ```
+  P 
+  ├─ "Let's use:" 
+  |─ SPAN 
+  |    └─ "Cascading" 
+  ├─ SPAN 
+  |    └─ "Style" 
+  └─ SPAN 
+	  └─ "Sheets" 
+  ```
 
 ---
 
@@ -135,50 +142,50 @@ P
 
 ## Specificity of Selectors
 
-There will often be scenarios where two selectors could select the same HTML element. For ex:
+* There will often be scenarios where two selectors could select the same HTML element. For ex:
 
-```html
-<p class="special">What color am I?</p> 
-```
+  ```html
+  <p class="special">What color am I?</p> 
+  ```
 
-In this case two conditions are used to **'tie-break'** - 
+* In this case two conditions are used to **'tie-break'** - 
 
-1. **Cascade**
+  1. **Cascade**
 
-   The code below is 'cascade' in action. The ruleset that is read the last is implemented. In the following case the `p` will end up blue. 
+    * The code below is 'cascade' in action. The ruleset that is read the last is implemented. In the following case the `p` will end up blue. 
 
-   ```css
-   p { 
-   	color: red; 
-   } 
-   p { 
-   	color: blue; 
-   } 
-   ```
+    ```css
+    p { 
+   	  color: red; 
+    } 
+    p { 
+   	  color: blue; 
+    } 
+    ```
 
-2.  **Specificity**
+  2.  **Specificity**
 
-   The below code is an example of the 'specificity' property where class selector gets priority over HTML element sectors. Thus `p` here is red although it comes above. 
+    * The below code is an example of the 'specificity' property where class selector gets priority over HTML element sectors. Thus `p` here is red although it comes above. 
 
-   ```css
-   .special { 
-   	color: red; 
-   }  
-   p { 
-   	color: blue; 
-   } 
-   ```
+    ```css
+    .special { 
+   	  color: red; 
+    }  
+    p { 
+   	  color: blue; 
+    } 
+    ```
 
-   
+
 
 ## Functions in CSS
 
-A pre-defined function is used as the value of some property, in situations where certain value needs to be calculated at the run time.  Ex:
+* A pre-defined function is used as the value of some property, in situations where certain value needs to be calculated at the run time.  Ex:
 
-```css
-width: calc(90% - 30px); 
-transform: rotate(0.8turn) 
-```
+  ```css
+  width: calc(90% - 30px); 
+  transform: rotate(0.8turn) 
+  ```
 
 
 
@@ -186,9 +193,9 @@ transform: rotate(0.8turn)
 
 #### Whitespaces in CSS
 
-The whitespace in CSS declarations separates values, but property names never have whitespace. 
+* The whitespace in CSS declarations separates values, but property names never have whitespace. 
 
-We must separate distinct values from one another by at least a space, but keep property names and property values together as single unbroken strings. 
+* We must separate distinct values from one another by at least a space, but keep property names and property values together as single unbroken strings. 
 
 ---
 
@@ -196,59 +203,60 @@ We must separate distinct values from one another by at least a space, but keep 
 
 ## @-Rules in CSS
 
-These are special rules giving CSS some instruction on how to behave. 
+* These are special rules giving CSS some instruction on how to behave. 
 
-Some @rules are simple with the rule name and a value.  As
+* Some @rules are simple with the rule name and a value.  As
 
-```css
-@import 'styles2.css'; 
-```
+  ```css
+  @import 'styles2.css'; 
+  ```
 
- to import an additional stylesheet into your main CSS stylesheet. 
+  to import an additional stylesheet into your main CSS stylesheet. 
 
-Others like the following vary 
+  * Others like the following vary 
 
-```css
-body {  
-    background-color: pink;  
-}  
-
-@media (min-width: 30em) {  
-    body {  
-        background-color: blue;  
-    }  
-}  
-/*Browser if 30em wide then body's background color is blue else pink*/ 
-```
+  ```css
+  body {  
+      background-color: pink;  
+  }  
+  
+  @media (min-width: 30em) {  
+      body {  
+          background-color: blue;  
+      }  
+  }  
+  /*Browser if 30em wide then body's background color is blue else pink*/ 
+  ```
 
 
 
 ## **Shorthand Properties** 
 
-The properties [padding](https://developer.mozilla.org/en-US/docs/Web/CSS/padding), [border](https://developer.mozilla.org/en-US/docs/Web/CSS/border), and [margin](https://developer.mozilla.org/en-US/docs/Web/CSS/margin) can be written in shorthand as follows 
+* The properties [padding](https://developer.mozilla.org/en-US/docs/Web/CSS/padding), [border](https://developer.mozilla.org/en-US/docs/Web/CSS/border), and [margin](https://developer.mozilla.org/en-US/docs/Web/CSS/margin) can be written in shorthand as follows 
 
-```css
-padding: 15px; /*adds padding to all 4 sides*/ 
-/*The following is same as  
-padding-top: 15px; padding-bottom: 15px 
-padding-left: 20px; padding-right: 20px; 
-*/ 
-padding: 15px 20px; 
-/*The following adds the padding in the order 
-TOP-RIGHT-BOTTOM-LEFT (Clockwise from top)*/ 
-padding: 5px 10px 15px 20px; 
-/*Note that values are separated by a space*/ 
-```
+  ```css
+  padding: 15px; /*adds padding to all 4 sides*/ 
+  /*The following is same as  
+  padding-top: 15px; padding-bottom: 15px 
+  padding-left: 20px; padding-right: 20px; 
+  */ 
+  padding: 15px 20px; 
+  /*The following adds the padding in the order 
+  TOP-RIGHT-BOTTOM-LEFT (Clockwise from top)*/ 
+  padding: 5px 10px 15px 20px; 
+  /*Note that values are separated by a space*/ 
+  ```
 
-The same applies for border and margin. 
+* The same applies for border and margin. 
 
-We also have some other properties like [font](https://developer.mozilla.org/en-US/docs/Web/CSS/font), [background](https://developer.mozilla.org/en-US/docs/Web/CSS/background). 
+* We also have some other properties like [font](https://developer.mozilla.org/en-US/docs/Web/CSS/font), [background](https://developer.mozilla.org/en-US/docs/Web/CSS/background). 
+
+
 
 ---
 
 #### **Shorthand Gotcha** 
 
-While shorthand often allows us to miss out values, ==they will then reset any values that you do not include to their initial values.== This ensures that a sensible set of values are used. 
+* While shorthand often allows us to miss out values, <u>they will then reset any values that you do not include to their initial values.</u> This ensures that a sensible set of values are used. 
 
 ---
-
