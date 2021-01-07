@@ -326,6 +326,8 @@
 
 ---
 
+
+
 * In JavaScript coordinates can be:
 
   1. **Relative to the window**
